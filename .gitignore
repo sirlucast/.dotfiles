@@ -1,2 +1,3 @@
+.gitignore
 zsh/zsh-autosuggestions
 zsh/zsh-syntax-highlighting
