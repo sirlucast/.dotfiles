@@ -2,8 +2,8 @@
 setopt prompt_subst
 
 # Use syntax highlighting
-if [ -f /Users/sirlucas/.dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-	source /Users/sirlucas/.dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -f /Users/sirlucast/.dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+	source /Users/sirlucast/.dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
 # Use history substring search
@@ -35,7 +35,7 @@ function __prompt()
     fi
 
     datetime=" %D{%d-%m-%G} - %T"      
-    let dots_count=${COLUMNS}-24 # dot_start(2) + dot_ts(2) + datetime(12) + time(8) tim + dot_end(2)        
+    let dots_count=${COLUMNS}-25 # dot_start(2) + dot_ts(2) + datetime(12) + time(8) tim + dot_end(2)        
     while [[ $dots_count -gt 0 ]]; do      
         dynamic_dots="${dynamic_dots}$sep"     
         let dots_count=${dots_count}-1     
@@ -74,8 +74,8 @@ RPROMPT='%B%F{red} %(?..E:%?)%b%f'
 PROMPT2="%B%F{yellow}$PROMPT2%b%f"
 
 # Use autosuggestion
-if [ -f /Users/sirlucas/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-	source /Users/sirlucas/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+if [ -f /Users/sirlucast/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+	source /Users/sirlucast/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 	ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=50
 	ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 fi
