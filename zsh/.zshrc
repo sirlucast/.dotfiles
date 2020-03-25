@@ -65,13 +65,6 @@ zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 
-
-
-# pyenv init
-if command -v pyenv 1>/dev/null 2>&1; then
-    eval "$(pyenv init -)"
-fi
-
 if hash brew 2>/dev/null; then
     export PATH=/usr/local/bin:$PATH
 fi
@@ -80,20 +73,43 @@ if [ -d ~/.local/bin/ ]; then
     export PATH=~/.local/bin:$PATH
 fi
 
-# pyenv
+#pyenv
 if [ -d ~/.pyenv/ ]; then
-    export PYENV_ROOT="$HOME/.pyenv"
-    export PATH="$PYENV_ROOT/bin:$PATH"
-    if command -v pyenv 1>/dev/null 2>&1; then
-        eval "$(pyenv init -)"
-    fi
+   export PYENV_ROOT="$HOME/.pyenv"
+   export PATH="$PYENV_ROOT/bin:$PATH"
+   if command -v pyenv 1>/dev/null 2>&1; then
+       eval "$(pyenv init -)"
+   fi
 fi
+
+# pyenv
+# export PYENV_ROOT=/usr/local/var/pyenv
+# export PATH="$PYENV_ROOT/bin:$PATH"
+# if [[ -z "$VIRTUAL_ENV" ]]; then
+#     eval "$(pyenv init -)"
+# fi
 
 # poetry
 if [ -d ~/.pyenv/ ]; then
     fpath+=~/.zfunc
     export PATH="$HOME/.poetry/bin:$PATH"
 fi
+
+#flutter
+export PATH=$PATH:$HOME/Documents/flutter/bin
+
+#VSCode
+function vscode {
+    if [[ $# = 0 ]]
+    then
+        open -a "Visual Studio Code"
+    else
+        local argPath="$1"
+        [[ $1 = /* ]] && argPath="$1" || argPath="$PWD/${1#./}"
+        open -a "Visual Studio Code" "$argPath"
+    fi
+}
+
 
 # Gitignore.io
 function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
@@ -104,5 +120,12 @@ if [ -f ~/.dotfiles/zsh/prompt.zsh ]; then
     source ~/.dotfiles/zsh/prompt.zsh
 fi
 
-source /Users/sirlucas/.dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /Users/sirlucas/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /Users/sirlucast/.dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /Users/sirlucast/.dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
+export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
+
